@@ -2,10 +2,9 @@ package com.gapi.spring_rest_api;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-import org.springframework.stereotype.Service;
+
 
 @Data
-
 @NoArgsConstructor
 @AllArgsConstructor
 public class Guitar {

@@ -2,6 +2,7 @@ package com.gapi.spring_rest_api;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -12,4 +13,6 @@ public class GuitarController {
     public String testCall() {
         return "All good";
     }
+
+
 }
