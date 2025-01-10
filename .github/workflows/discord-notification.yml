@@ -5,7 +5,7 @@ on:
     types: [opened, closed, reopened, edited]
   push:
     branches:
-      - main
+      - main 
 
 jobs:
   discord_notification:
@@ -18,41 +18,43 @@ jobs:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           content: "Pull Request Update"
           embeds: |
-            [{
-              "title": "New Pull Request Action! 🎉",
-              "description": "A PR has been created or updated. Check it out below!",
-              "color": 3066993,
-              "fields": [
-                {
-                  "name": "Pull Request Title",
-                  "value": "${{ github.event.pull_request.title }}",
-                  "inline": false
-                },
-                {
-                  "name": "Action",
-                  "value": "${{ github.event.action }}",
-                  "inline": true
-                },
-                {
-                  "name": "Author",
-                  "value": "@${{ github.event.pull_request.user.login }}",
-                  "inline": true
-                },
-                {
-                  "name": "PR URL",
-                  "value": "[Click here to view it!](${{ github.event.pull_request.html_url }})",
-                  "inline": false
-                },
-                {
-                  "name": "Description",
-                  "value": "${{ github.event.pull_request.body }}",
-                  "inline": false
+            [
+              {
+                "title": "New Pull Request Action! 🎉",
+                "description": "Hey team! A PR has been created or updated. Check it out below!",
+                "color": 3066993,  # Greenish color for the embed
+                "fields": [
+                  {
+                    "name": "Pull Request Title",
+                    "value": "${{ github.event.pull_request.title }}",
+                    "inline": false
+                  },
+                  {
+                    "name": "Action",
+                    "value": "${{ github.event.action }}",
+                    "inline": true
+                  },
+                  {
+                    "name": "Author",
+                    "value": "@${{ github.event.pull_request.user.login }}",
+                    "inline": true
+                  },
+                  {
+                    "name": "PR URL",
+                    "value": "[Click here to view it!](${{ github.event.pull_request.html_url }})",
+                    "inline": false
+                  },
+                  {
+                    "name": "Description",
+                    "value": "${{ github.event.pull_request.body }}",
+                    "inline": false
+                  }
+                ],
+                "footer": {
+                  "text": "Stay awesome, everyone! ✨"
                 }
-              ],
-              "footer": {
-                "text": "Stay awesome! ✨"
               }
-            }]
+            ]
           run: |
             curl -X POST -H "Content-Type: application/json" \
             -d "${EMBED_DATA}" \
