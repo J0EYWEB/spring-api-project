@@ -16,13 +16,10 @@ jobs:
       - uses: sarisia/actions-status-discord@v1
         if: always()
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
           status: ${{ job.status }}
-          content: "Hey <@316911818725392384>"
           title: "deploy"
-          description: "Build and deploy to GitHub Pages"
-          image: ${{ secrets.EMBED_IMAGE }}
+          description: "Build and deploy to GitHub"
           color: 0x0000ff
-          url: "https://github.com/sarisia/actions-status-discord"
+          url: "https://github.com/J0EYWEB/spring-api-project"
           username: GitHub Actions
-          avatar_url: ${{ secrets.AVATAR_URL }} 
