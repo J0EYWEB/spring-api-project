@@ -4,8 +4,7 @@ on:
   pull_request:
     types: [opened, closed, reopened, edited]
   push:
-    branches:
-      - main 
+    branches: [main] 
 
 jobs:
   discord_notification:
