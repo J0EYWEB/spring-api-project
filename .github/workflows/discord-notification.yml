@@ -13,49 +13,16 @@ jobs:
 
     steps:
       - name: Send Personal Discord Notification with Embed
-        uses: tsickert/discord-webhook@v6.0.0
+      - uses: sarisia/actions-status-discord@v1
+        if: always()
         with:
-          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          content: "Pull Request Update"
-          embeds: |
-            [
-              {
-                "title": "New Pull Request Action! 🎉",
-                "description": "Hey team! A PR has been created or updated. Check it out below!",
-                "color": 3066993,  # Greenish color for the embed
-                "fields": [
-                  {
-                    "name": "Pull Request Title",
-                    "value": "${{ github.event.pull_request.title }}",
-                    "inline": false
-                  },
-                  {
-                    "name": "Action",
-                    "value": "${{ github.event.action }}",
-                    "inline": true
-                  },
-                  {
-                    "name": "Author",
-                    "value": "@${{ github.event.pull_request.user.login }}",
-                    "inline": true
-                  },
-                  {
-                    "name": "PR URL",
-                    "value": "[Click here to view it!](${{ github.event.pull_request.html_url }})",
-                    "inline": false
-                  },
-                  {
-                    "name": "Description",
-                    "value": "${{ github.event.pull_request.body }}",
-                    "inline": false
-                  }
-                ],
-                "footer": {
-                  "text": "Stay awesome, everyone! ✨"
-                }
-              }
-            ]
-          run: |
-            curl -X POST -H "Content-Type: application/json" \
-            -d "${EMBED_DATA}" \
-            ${{ secrets.DISCORD_WEBHOOK_URL }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          content: "Hey <@316911818725392384>"
+          title: "deploy"
+          description: "Build and deploy to GitHub Pages"
+          image: ${{ secrets.EMBED_IMAGE }}
+          color: 0x0000ff
+          url: "https://github.com/sarisia/actions-status-discord"
+          username: GitHub Actions
+          avatar_url: ${{ secrets.AVATAR_URL }} 
