@@ -13,13 +13,13 @@ jobs:
 
     steps:
       - name: Send Personal Discord Notification with Embed
-      - uses: sarisia/actions-status-discord@v1
+        uses: sarisia/actions-status-discord@v1
         if: always()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
           status: ${{ job.status }}
-          title: "deploy"
-          description: "Build and deploy to GitHub"
+          title: "Pull Request Update"
+          description: "A pull request has been created or updated."
           color: 0x0000ff
           url: "https://github.com/J0EYWEB/spring-api-project"
           username: GitHub Actions
