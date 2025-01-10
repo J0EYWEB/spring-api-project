@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Send Personal Discord Notification with Embed
-        uses: Ilshidur/action-discord-webhook@v1
+        uses: peter-evans/discord-webhook-action@v2
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           message: |
