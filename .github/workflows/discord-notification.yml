@@ -5,7 +5,7 @@ on:
     types: [opened, closed, reopened, edited]
   push:
     branches:
-      - main
+      - main 
 
 jobs:
   discord_notification:
@@ -13,47 +13,13 @@ jobs:
 
     steps:
       - name: Send Personal Discord Notification with Embed
-        uses: tsickert/discord-webhook@v6.0.0
+      - uses: sarisia/actions-status-discord@v1
+        if: always()
         with:
-          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          content: "Pull Request Update"
-          embeds: |
-            [{
-              "title": "New Pull Request Action! 🎉",
-              "description": "A PR has been created or updated. Check it out below!",
-              "color": 3066993,
-              "fields": [
-                {
-                  "name": "Pull Request Title",
-                  "value": "${{ github.event.pull_request.title }}",
-                  "inline": false
-                },
-                {
-                  "name": "Action",
-                  "value": "${{ github.event.action }}",
-                  "inline": true
-                },
-                {
-                  "name": "Author",
-                  "value": "@${{ github.event.pull_request.user.login }}",
-                  "inline": true
-                },
-                {
-                  "name": "PR URL",
-                  "value": "[Click here to view it!](${{ github.event.pull_request.html_url }})",
-                  "inline": false
-                },
-                {
-                  "name": "Description",
-                  "value": "${{ github.event.pull_request.body }}",
-                  "inline": false
-                }
-              ],
-              "footer": {
-                "text": "Stay awesome! ✨"
-              }
-            }]
-          run: |
-            curl -X POST -H "Content-Type: application/json" \
-            -d "${EMBED_DATA}" \
-            ${{ secrets.DISCORD_WEBHOOK_URL }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          status: ${{ job.status }}
+          title: "deploy"
+          description: "Build and deploy to GitHub"
+          color: 0x0000ff
+          url: "https://github.com/J0EYWEB/spring-api-project"
+          username: GitHub Actions
