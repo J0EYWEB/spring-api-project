@@ -1,6 +1,7 @@
 package com.gapi.spring_rest_api;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 
@@ -21,7 +22,7 @@ public class Guitar {
     @NotEmpty(message = "Wood type is required")
     private String woodType;
 
-    @NotEmpty(message = "Price is required")
+    @Positive(message = "Price must be a positive value")
     private double price;
 
 }

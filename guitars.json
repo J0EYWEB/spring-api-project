@@ -1,0 +1,67 @@
+[ {
+  "id" : 1,
+  "make" : "Gibson",
+  "model" : "Les Paul Standard '50s",
+  "woodType" : "Mahogany",
+  "price" : 2499.99
+}, {
+  "id" : 2,
+  "make" : "Fender",
+  "model" : "American Professional II Stratocaster",
+  "woodType" : "Alder",
+  "price" : 1499.99
+}, {
+  "id" : 3,
+  "make" : "Ibanez",
+  "model" : "RG550",
+  "woodType" : "Basswood",
+  "price" : 799.99
+}, {
+  "id" : 4,
+  "make" : "PRS",
+  "model" : "SE Custom 24",
+  "woodType" : "Mahogany",
+  "price" : 749.99
+}, {
+  "id" : 5,
+  "make" : "PRS",
+  "model" : "SE Custom 24",
+  "woodType" : "Mahogany",
+  "price" : 749.99
+}, {
+  "id" : 6,
+  "make" : "Yamaha",
+  "model" : "Pacifica 112V",
+  "woodType" : "Alder",
+  "price" : 399.99
+}, {
+  "id" : 7,
+  "make" : "Epiphone",
+  "model" : "Les Paul Standard '50s",
+  "woodType" : "Mahogany",
+  "price" : 699.99
+}, {
+  "id" : 8,
+  "make" : "Gretsch",
+  "model" : "G2622 Streamliner",
+  "woodType" : "Maple",
+  "price" : 649.99
+}, {
+  "id" : 9,
+  "make" : "Taylor",
+  "model" : "314ce",
+  "woodType" : "Spruce",
+  "price" : 1399.99
+}, {
+  "id" : 10,
+  "make" : "Schecter",
+  "model" : "Hellraiser C-1",
+  "woodType" : "Mahogany",
+  "price" : 899.99
+}, {
+  "id" : 11,
+  "make" : "Jackson",
+  "model" : "Soloist SLX",
+  "woodType" : "Basswood",
+  "price" : 549.99
+} ]
