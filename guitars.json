@@ -58,4 +58,10 @@
   "model" : "Hellraiser C-1",
   "woodType" : "Mahogany",
   "price" : 899.99
+}, {
+  "id" : 10,
+  "make" : "Schecter",
+  "model" : "Hellraiser C-1",
+  "woodType" : "Mahogany",
+  "price" : 899.99
 } ]

@@ -41,7 +41,7 @@ public class GuitarsService {
             throw new IllegalArgumentException("Invalid guitar data: " + bindingResult.getAllErrors());
         }
 
-        guitar.setId((long) (guitars.size() + 1));
+        guitar.setId(availableId());
         guitars.add(guitar);
         saveToFile();
         return guitar;
@@ -88,6 +88,23 @@ public class GuitarsService {
         } catch (IOException e){
             throw new RuntimeException("Failed to load data from " + filePath);
         }
+    }
+
+    private Long availableId(){
+        List<Long> usedIds = guitars.stream()
+                .map(Guitar::getId)
+                .sorted()
+                .toList();
+
+        long id = 1;
+        for (Long usedId : usedIds){
+            if (id < usedId){
+                break;
+            }
+            id++;
+        }
+
+        return id;
     }
 
 
