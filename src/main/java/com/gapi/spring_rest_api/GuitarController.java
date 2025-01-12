@@ -34,6 +34,15 @@ public class GuitarController {
         return guitarService.getAllGuitars();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Guitar> getGuitarById(@PathVariable Long id){
+        Guitar guitar = guitarService.getGuitarById(id);
+        if (guitar == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(guitar);
+    }
+
     @PostMapping
     public ResponseEntity<Guitar> createGuitar(@Valid @RequestBody Guitar guitar, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()) {
