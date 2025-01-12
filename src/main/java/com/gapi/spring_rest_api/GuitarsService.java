@@ -21,6 +21,14 @@ public class GuitarsService {
     ObjectMapper objectMapper = new ObjectMapper();
     private String filePath = "guitars.json";
 
+    public GuitarsService(){
+        loadFromFile();
+    }
+
+    public List<Guitar> getAllGuitars(){
+        return guitars;
+    }
+
     public Guitar createGuitar(@Valid Guitar guitar, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()){
             throw new IllegalArgumentException("Invalid guitar data: " + bindingResult.getAllErrors());
@@ -52,7 +60,7 @@ public class GuitarsService {
                 guitars.addAll(Arrays.asList(loadedGuitars));
             }
         } catch (IOException e){
-            throw new RuntimeException("Failed to load guitar file");
+            throw new RuntimeException("Failed to load data from " + filePath);
         }
     }
 
