@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -26,6 +27,11 @@ public class GuitarController {
     @GetMapping("/test-call")
     public String testCall() {
         return "All good";
+    }
+
+    @GetMapping
+    public List<Guitar> getAllGuitars(){
+        return guitarService.getAllGuitars();
     }
 
     @PostMapping
