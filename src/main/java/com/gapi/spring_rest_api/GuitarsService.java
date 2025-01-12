@@ -47,6 +47,21 @@ public class GuitarsService {
         return guitar;
     }
 
+    public Guitar updateGuitar(long id, @Valid Guitar updatedGuitar, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            throw new IllegalArgumentException("Invalid guitar data: " + bindingResult.getAllErrors());
+        }
+        Guitar guitar = getGuitarById(id);
+        if(guitar != null) {
+            guitar.setMake(updatedGuitar.getMake());
+            guitar.setModel(updatedGuitar.getModel());
+            guitar.setWoodType(updatedGuitar.getWoodType());
+            guitar.setPrice(updatedGuitar.getPrice());
+            saveToFile();
+        }
+        return guitar;
+    }
+
     private void saveToFile(){
         try{
             System.out.println("Writing to file " + new File(filePath).getAbsolutePath());
