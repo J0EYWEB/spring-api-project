@@ -62,7 +62,7 @@ public class GuitarsService {
         return guitar;
     }
 
-    private boolean deleteGuitar(long id){
+    public boolean deleteGuitar(long id){
         boolean deleted = guitars.removeIf(guitar -> guitar.getId().equals(id));
         if (deleted){
             saveToFile();

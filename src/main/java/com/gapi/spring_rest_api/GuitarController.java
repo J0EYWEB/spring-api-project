@@ -66,4 +66,12 @@ public class GuitarController {
         }
         return ResponseEntity.ok(guitar);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGuitar(@PathVariable Long id){
+        if (guitarService.deleteGuitar(id)){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
