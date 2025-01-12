@@ -62,13 +62,17 @@ public class GuitarsService {
         return guitar;
     }
 
+    private boolean deleteGuitar(long id){
+        boolean deleted = guitars.removeIf(guitar -> guitar.getId().equals(id));
+        if (deleted){
+            saveToFile();
+        }
+        return deleted;
+    }
+
     private void saveToFile(){
         try{
-            System.out.println("Writing to file " + new File(filePath).getAbsolutePath());
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), guitars);
-            System.out.println("Guitar was saved to " + new File(filePath).getAbsolutePath());
-            System.out.println("Current Working directory: " + System.getProperty("user.dir"));
-            System.out.println(guitars);
         } catch (IOException e){
             throw new RuntimeException("Failed to save to guitar file", e);
         }
