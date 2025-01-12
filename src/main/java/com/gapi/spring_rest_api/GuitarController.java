@@ -4,11 +4,11 @@ package com.gapi.spring_rest_api;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.gapi.spring_rest_api.GuitarsService;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -23,9 +23,18 @@ public class GuitarController {
     }
 
 
-    @GetMapping("/test-call")
-    public String testCall() {
-        return "All good";
+    @GetMapping
+    public List<Guitar> getAllGuitars(){
+        return guitarService.getAllGuitars();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Guitar> getGuitarById(@PathVariable Long id){
+        Guitar guitar = guitarService.getGuitarById(id);
+        if (guitar == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(guitar);
     }
 
     @PostMapping
@@ -38,5 +47,25 @@ public class GuitarController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(createdGuitar);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Guitar> updateGuitar(@PathVariable Long id,@Valid @RequestBody Guitar updatedGuitar, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        Guitar guitar = guitarService.updateGuitar(id, updatedGuitar, bindingResult);
+        if (guitar == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(guitar);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGuitar(@PathVariable Long id){
+        if (guitarService.deleteGuitar(id)){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

@@ -53,15 +53,15 @@
   "woodType" : "Spruce",
   "price" : 1399.99
 }, {
-  "id" : 10,
+  "id" : 11,
   "make" : "Schecter",
   "model" : "Hellraiser C-1",
   "woodType" : "Mahogany",
   "price" : 899.99
 }, {
-  "id" : 11,
-  "make" : "Jackson",
-  "model" : "Soloist SLX",
-  "woodType" : "Basswood",
-  "price" : 549.99
+  "id" : 10,
+  "make" : "Schecter",
+  "model" : "Hellraiser C-1",
+  "woodType" : "Mahogany",
+  "price" : 899.99
 } ]
