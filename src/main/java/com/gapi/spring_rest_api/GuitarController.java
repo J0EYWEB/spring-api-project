@@ -4,7 +4,6 @@ package com.gapi.spring_rest_api;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.gapi.spring_rest_api.GuitarsService;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,11 +22,6 @@ public class GuitarController {
         this.guitarService = guitarService;
     }
 
-
-    @GetMapping("/test-call")
-    public String testCall() {
-        return "All good";
-    }
 
     @GetMapping
     public List<Guitar> getAllGuitars(){
