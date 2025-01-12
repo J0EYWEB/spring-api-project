@@ -54,4 +54,16 @@ public class GuitarController {
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(createdGuitar);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Guitar> updateGuitar(@PathVariable Long id,@Valid @RequestBody Guitar updatedGuitar, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        Guitar guitar = guitarService.updateGuitar(id, updatedGuitar, bindingResult);
+        if (guitar == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(guitar);
+    }
 }
