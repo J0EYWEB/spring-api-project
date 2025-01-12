@@ -29,6 +29,13 @@ public class GuitarsService {
         return guitars;
     }
 
+    public Guitar getGuitarById(long id){
+        return guitars.stream()
+                .filter(guitar -> guitar.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
     public Guitar createGuitar(@Valid Guitar guitar, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()){
             throw new IllegalArgumentException("Invalid guitar data: " + bindingResult.getAllErrors());
