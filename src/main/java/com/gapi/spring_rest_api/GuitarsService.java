@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -41,7 +42,18 @@ public class GuitarsService {
         } catch (IOException e){
             throw new RuntimeException("Failed to save to guitar file", e);
         }
+    }
 
+    private void loadFromFile(){
+        try{
+            File file = new File(filePath);
+            if(file.exists()){
+                Guitar[] loadedGuitars = objectMapper.readValue(file, Guitar[].class);
+                guitars.addAll(Arrays.asList(loadedGuitars));
+            }
+        } catch (IOException e){
+            throw new RuntimeException("Failed to load guitar file");
+        }
     }
 
 
