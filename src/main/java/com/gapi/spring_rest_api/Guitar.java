@@ -1,14 +1,12 @@
 package com.gapi.spring_rest_api;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 @Entity
+@Table(name = "guitars")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
