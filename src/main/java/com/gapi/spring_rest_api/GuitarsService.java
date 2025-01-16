@@ -1,8 +1,10 @@
 package com.gapi.spring_rest_api;
 
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.validation.BindingResult;
@@ -21,23 +23,15 @@ public class GuitarsService {
     @Autowired
     private GuitarRepository guitarRepository;
 
-    private final List<Guitar> guitars = new ArrayList<>();
-    ObjectMapper objectMapper = new ObjectMapper();
-    private String filePath = "guitars.json";
-
-    public GuitarsService(){
-        loadFromFile();
-    }
 
     public List<Guitar> getAllGuitars(){
-        return guitars;
+        return guitarRepository.findAll();
     }
 
     public Guitar getGuitarById(long id){
-        return guitars.stream()
-                .filter(guitar -> guitar.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        return guitarRepository.findById(id)
+                .orElseThrow(() -> new
+                        EntityNotFoundException("Guitar with ID " + id + " not found."));
     }
 
     public Guitar createGuitar(@Valid Guitar guitar, BindingResult bindingResult) throws IOException {
@@ -53,60 +47,15 @@ public class GuitarsService {
             throw new IllegalArgumentException("Invalid guitar data: " + bindingResult.getAllErrors());
         }
         Guitar guitar = getGuitarById(id);
-        if(guitar != null) {
-            guitar.setMake(updatedGuitar.getMake());
-            guitar.setModel(updatedGuitar.getModel());
-            guitar.setWoodType(updatedGuitar.getWoodType());
-            guitar.setPrice(updatedGuitar.getPrice());
-            saveToFile();
-        }
-        return guitar;
+        guitar.setMake(updatedGuitar.getMake());
+        guitar.setModel(updatedGuitar.getModel());
+        guitar.setWoodType(updatedGuitar.getWoodType());
+        guitar.setPrice(updatedGuitar.getPrice());
+        return guitarRepository.save(guitar);
     }
 
-    public boolean deleteGuitar(long id){
-        boolean deleted = guitars.removeIf(guitar -> guitar.getId().equals(id));
-        if (deleted){
-            saveToFile();
-        }
-        return deleted;
+    public void deleteGuitar(long id){
+        Guitar guitar = getGuitarById(id);
+        guitarRepository.delete(guitar);
     }
-
-    private void saveToFile(){
-        try{
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), guitars);
-        } catch (IOException e){
-            throw new RuntimeException("Failed to save to guitar file", e);
-        }
-    }
-
-    private void loadFromFile(){
-        try{
-            File file = new File(filePath);
-            if(file.exists()){
-                Guitar[] loadedGuitars = objectMapper.readValue(file, Guitar[].class);
-                guitars.addAll(Arrays.asList(loadedGuitars));
-            }
-        } catch (IOException e){
-            throw new RuntimeException("Failed to load data from " + filePath);
-        }
-    }
-
-    private Long availableId(){
-        List<Long> usedIds = guitars.stream()
-                .map(Guitar::getId)
-                .sorted()
-                .toList();
-
-        long id = 1;
-        for (Long usedId : usedIds){
-            if (id < usedId){
-                break;
-            }
-            id++;
-        }
-
-        return id;
-    }
-
-
 }
