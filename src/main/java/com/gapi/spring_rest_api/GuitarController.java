@@ -2,6 +2,7 @@ package com.gapi.spring_rest_api;
 
 
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/guitars")
 public class GuitarController {
 
-
+    @Autowired
     private final GuitarsService guitarService;
 
     public GuitarController(GuitarsService guitarService) {

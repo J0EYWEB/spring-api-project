@@ -2,6 +2,7 @@ package com.gapi.spring_rest_api;
 
 
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,9 @@ import java.util.List;
 
 @Service
 public class GuitarsService {
+
+    @Autowired
+    private GuitarRepository guitarRepository;
 
     private final List<Guitar> guitars = new ArrayList<>();
     ObjectMapper objectMapper = new ObjectMapper();
@@ -41,10 +45,7 @@ public class GuitarsService {
             throw new IllegalArgumentException("Invalid guitar data: " + bindingResult.getAllErrors());
         }
 
-        guitar.setId(availableId());
-        guitars.add(guitar);
-        saveToFile();
-        return guitar;
+        return guitarRepository.save(guitar);
     }
 
     public Guitar updateGuitar(long id, @Valid Guitar updatedGuitar, BindingResult bindingResult){
