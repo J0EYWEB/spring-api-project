@@ -50,6 +50,15 @@ public class GuitarController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdGuitar);
     }
 
+    @PostMapping("/bulk-guitars")
+    public ResponseEntity<String> bulkCreateGuitar(@RequestBody @Valid List<Guitar> guitars, BindingResult bindingResult) throws IOException {
+        if (bindingResult.hasErrors()){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+        guitarService.bulkCreateGuitar(guitars);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Guitars created successfully!");
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Guitar> updateGuitar(@PathVariable Long id,@Valid @RequestBody Guitar updatedGuitar, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {

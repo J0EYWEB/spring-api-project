@@ -42,6 +42,10 @@ public class GuitarsService {
         return guitarRepository.save(guitar);
     }
 
+    public void bulkCreateGuitar(@Valid List<Guitar> guitars) throws IOException {
+        guitarRepository.saveAll(guitars);
+    }
+
     public Guitar updateGuitar(long id, @Valid Guitar updatedGuitar, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             throw new IllegalArgumentException("Invalid guitar data: " + bindingResult.getAllErrors());
