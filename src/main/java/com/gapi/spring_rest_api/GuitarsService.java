@@ -34,6 +34,10 @@ public class GuitarsService {
                         EntityNotFoundException("Guitar with ID " + id + " not found."));
     }
 
+    public List<Guitar> getGuitarsByMake(String make){
+        return guitarRepository.findByMake(make);
+    }
+
     public Guitar createGuitar(@Valid Guitar guitar, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()){
             throw new IllegalArgumentException("Invalid guitar data: " + bindingResult.getAllErrors());

@@ -38,6 +38,15 @@ public class GuitarController {
         return ResponseEntity.ok(guitar);
     }
 
+    @GetMapping("/make/{make}")
+    public ResponseEntity<List<Guitar>> getGuitarsByMake(@PathVariable String make){
+        List<Guitar> guitars = guitarService.getGuitarsByMake(make);
+        if (guitars.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.ok(guitars);
+    }
+
     @PostMapping
     public ResponseEntity<Guitar> createGuitar(@Valid @RequestBody Guitar guitar, BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()) {
