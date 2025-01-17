@@ -38,22 +38,15 @@ public class GuitarsService {
         return guitarRepository.findByMake(make);
     }
 
-    public Guitar createGuitar(@Valid Guitar guitar, BindingResult bindingResult) throws IOException {
-        if (bindingResult.hasErrors()){
-            throw new IllegalArgumentException("Invalid guitar data: " + bindingResult.getAllErrors());
-        }
-
+    public Guitar createGuitar(@Valid Guitar guitar){
         return guitarRepository.save(guitar);
     }
 
-    public void bulkCreateGuitar(@Valid List<Guitar> guitars) throws IOException {
+    public void bulkCreateGuitar(@Valid List<Guitar> guitars){
         guitarRepository.saveAll(guitars);
     }
 
-    public Guitar updateGuitar(long id, @Valid Guitar updatedGuitar, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
-            throw new IllegalArgumentException("Invalid guitar data: " + bindingResult.getAllErrors());
-        }
+    public Guitar updateGuitar(long id, @Valid Guitar updatedGuitar){
         Guitar guitar = getGuitarById(id);
         guitar.setMake(updatedGuitar.getMake());
         guitar.setModel(updatedGuitar.getModel());
