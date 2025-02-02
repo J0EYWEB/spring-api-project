@@ -4,7 +4,7 @@
 
 All API requests are made to the following base URL:
 
-**`https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars`**
+**`http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars`**
 
 This URL will serve as the root endpoint for all API calls.
 
@@ -42,12 +42,12 @@ No authentication is required to access the public endpoints of this API.
 
 ### 1. **Get All Guitars**
 
-- **URL:** `https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars`
+- **URL:** `http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars`
 - **Method:** `GET`
 - **Description:** Retrieves a list of all guitars in the system.
 - **Request Example:**
   ```bash
-  GET https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars
+  GET http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars
 - **Response Example:**
   ```json
   [
@@ -72,12 +72,12 @@ No authentication is required to access the public endpoints of this API.
 ---
 ### 2. **Get Guitar by ID**
 
-- **URL:** `https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/{id}`
+- **URL:** `http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/{id}`
 - **Method:** `GET`
 - **Description:** Retrieves a specific guitar by its ID.
 - **Request Example:**
   ```bash
-  GET https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/1
+  GET http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/1
 - **Response Example:**
   ```json
   {
@@ -97,12 +97,12 @@ No authentication is required to access the public endpoints of this API.
 ---
 ### 3. **Get Guitars by Make**
 
-- **URL:** `https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/make/{make}`
+- **URL:** `http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/make/{make}`
 - **Method:** `GET`
 - **Description:** Retrieves all guitars of a specific make.
 - **Request Example:**
   ```bash
-  GET https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/make/Gibson
+  GET http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/make/Gibson
 - **Response Example:**
   ```json
   [
@@ -138,12 +138,12 @@ No authentication is required to access the public endpoints of this API.
 ---
 ### 4. **Create Guitar**
 
-- **URL:** `https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars`
+- **URL:** `http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars`
 - **Method:** `POST`
 - **Description:** Creates a new guitar in the system.
 - **Request Example:**
   ```bash
-  POST https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars
+  POST http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars
 Payload:
 ```json
 {
@@ -172,12 +172,12 @@ Payload:
 ---
 ### 5. **Bulk Create Guitars**
 
-- **URL:** `https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/bulk-guitars`
+- **URL:** `http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/bulk-guitars`
 - **Method:** `POST`
 - **Description:** Creates multiple guitars in bulk.
 - **Request Example:**
   ```bash
-  POST https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/bulk-guitars
+  POST http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/bulk-guitars
 Payload:
 ```json
 [
@@ -208,12 +208,12 @@ Payload:
 ---
 ### 6. **Update Guitar**
 
-- **URL:** `https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/{id}`
+- **URL:** `http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/{id}`
 - **Method:** `PUT`
 - **Description:** Updates the details of an existing guitar.
 - **Request Example:**
   ```bash
-  PUT https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/1
+  PUT http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/1
 Payload:
 ```json
 {
@@ -245,12 +245,12 @@ Payload:
 ---
 ### 7. **Delete Guitar**
 
-- **URL:** `https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/{id}`
+- **URL:** `http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/{id}`
 - **Method:** `DELETE`
 - **Description:** Deletes a specific guitar by its ID.
 - **Request Example:**
   ```bash
-  DELETE https://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/1
+  DELETE http://Guitar-spring-api-project-env.eba-eku8jsny.us-east-1.elasticbeanstalk.com/api/guitars/1
 - **Response Example:** No body content.
 - **Response Code:**
   ```http
