@@ -1,5 +1,6 @@
 # API Documentation: Guitar Spring API
 
+
 ## Base URL
 
 All API requests are made to the following base URL:
